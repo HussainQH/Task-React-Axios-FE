@@ -10,14 +10,14 @@ function ChatRoomsList(props) {
   const openModal = () => setIsOpen(true);
 
   const roomsList = props.rooms.map((room) => {
-    return <ChatRoomitem room={room} key={room.id} />;
+    return <ChatRoomitem deleteRoom={props.deleteRoom} room={room} key={room.id} />;
   });
   return (
     <div className="main__chatlist">
       <button className="btn">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New room</span>
-        <CreateRoomModal isOpen={isOpen} closeModal={closeModal} />
+        <CreateRoomModal createRoom={props.createRoom} isOpen={isOpen} closeModal={closeModal} />
       </button>
       <center>
         <div className="chatlist__heading">
