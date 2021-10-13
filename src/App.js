@@ -40,8 +40,25 @@ function App() {
       const response = await axios.delete(
         `https://coded-task-axios-be.herokuapp.com/rooms/${id}`
       );
+
       const roomsNew = rooms.filter((room) => room.id !== id);
       setRooms(roomsNew);
+    } catch (error) {
+      alert(error);
+    }
+  };
+  const updateRoom = async (id, room) => {
+    try {
+      const response = await axios.put(
+        `https://coded-task-axios-be.herokuapp.com/rooms/${id}`,
+        room
+      );
+
+      const updatedRoom = rooms.map((room) =>
+        room.id === id ? response.data : room
+      );
+
+      setRooms(updatedRoom);
     } catch (error) {
       alert(error);
     }
@@ -60,6 +77,7 @@ function App() {
                 deleteRoom={deleteRoom}
                 createRoom={createRoom}
                 rooms={rooms}
+                updateRoom={updateRoom}
               />
             </center>
           </Route>

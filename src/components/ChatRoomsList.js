@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import ChatRoomitem from './ChatRoomitem';
-import CreateRoomModal from './CreateRoomModal';
+import React, { useState } from "react";
+import ChatRoomitem from "./ChatRoomitem";
+import CreateRoomModal from "./CreateRoomModal";
 
 function ChatRoomsList(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,14 +10,25 @@ function ChatRoomsList(props) {
   const openModal = () => setIsOpen(true);
 
   const roomsList = props.rooms.map((room) => {
-    return <ChatRoomitem deleteRoom={props.deleteRoom} room={room} key={room.id} />;
+    return (
+      <ChatRoomitem
+        deleteRoom={props.deleteRoom}
+        room={room}
+        key={room.id}
+        updateRoom={props.updateRoom}
+      />
+    );
   });
   return (
     <div className="main__chatlist">
       <button className="btn">
         <i className="fa fa-plus"></i>
         <span onClick={openModal}>New room</span>
-        <CreateRoomModal createRoom={props.createRoom} isOpen={isOpen} closeModal={closeModal} />
+        <CreateRoomModal
+          createRoom={props.createRoom}
+          isOpen={isOpen}
+          closeModal={closeModal}
+        />
       </button>
       <center>
         <div className="chatlist__heading">
